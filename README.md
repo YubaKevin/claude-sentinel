@@ -4,6 +4,13 @@ macOS 菜单栏网络观察工具，深蓝与淡紫像素空间站风格，使�
 
 ![猫咪玩线球状态预览](design/mascot-yarn-preview.png)
 
+## 平台与文档
+
+目前仅支持 macOS，构建目标为 macOS 14+。本机默认打包为 Apple 芯片 `arm64`；Intel `x86_64` 需要另行构建验证。Windows / Linux 暂不支持。
+
+- [使用说明：安装、代理配置、线球状态与隐私](docs/使用说明.md)
+- [打包与分发：测试 ZIP、版本号、架构、Developer ID 签名和 Apple 公证](docs/打包与分发.md)
+
 ## 构建与运行
 
 需要 macOS 14+ 和 Swift 6 工具链。
@@ -19,6 +26,14 @@ open output/ClaudeSentinel.app
 .build/release/ClaudeSentinel --self-test
 .build/release/ClaudeSentinel --probe
 ```
+
+生成可交付的本机架构测试包与 SHA-256 校验文件：
+
+```sh
+./scripts/package.sh
+```
+
+默认输出 `output/ClaudeSentinel-0.1.0-macos-arm64-adhoc.zip`（Apple 芯片示例）。`adhoc` 包未通过 Apple 公证；正式分发请按[打包与分发](docs/打包与分发.md)完成签名、公证并重新打包。接收者无需安装 Swift/Xcode，但需要自己的代理。
 
 `--probe` 输出一次真实检测 JSON；代理或 API 连通检查失败时退出码为 2。它不写入图形界面的历史记录。
 
