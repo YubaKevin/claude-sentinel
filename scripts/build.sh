@@ -16,6 +16,9 @@ app="$PWD/output/ClaudeSentinel.app"
 mkdir -p "$app/Contents/MacOS" "$app/Contents/Resources"
 cp "$bin_dir/ClaudeSentinel" "$app/Contents/MacOS/ClaudeSentinel"
 /usr/bin/strip -S "$app/Contents/MacOS/ClaudeSentinel"
+iconset="$PWD/.build/AppIcon.iconset"
+"$bin_dir/ClaudeSentinel" --render-app-icon "$iconset"
+/usr/bin/iconutil -c icns "$iconset" -o "$app/Contents/Resources/AppIcon.icns"
 cat > "$app/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -24,6 +27,7 @@ cat > "$app/Contents/Info.plist" <<PLIST
 <key>CFBundleIdentifier</key><string>local.claude-sentinel.app</string>
 <key>CFBundleName</key><string>Claude 小哨兵</string>
 <key>CFBundleDisplayName</key><string>Claude 小哨兵</string>
+<key>CFBundleIconFile</key><string>AppIcon</string>
 <key>CFBundleVersion</key><string>$build_number</string>
 <key>CFBundleShortVersionString</key><string>$version</string>
 <key>CFBundlePackageType</key><string>APPL</string>

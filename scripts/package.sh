@@ -10,7 +10,7 @@ for item in "$app"/Contents/**/*(DN@); do
 done
 for item in "$app"/Contents/**/*(DN.); do
   case "${item#$app/}" in
-    Contents/Info.plist|Contents/MacOS/ClaudeSentinel|Contents/_CodeSignature/CodeResources) ;;
+    Contents/Info.plist|Contents/MacOS/ClaudeSentinel|Contents/Resources/AppIcon.icns|Contents/_CodeSignature/CodeResources) ;;
     *) print -u2 "Unexpected bundle file; inspect before sharing: ${item#$app/}"; exit 1 ;;
   esac
 done

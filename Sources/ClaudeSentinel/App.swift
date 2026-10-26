@@ -64,6 +64,7 @@ import SwiftUI
 @main struct ClaudeSentinelApp {
     @MainActor static func main() {
         if CommandLine.arguments.contains("--self-test") { selfTest(); return }
+        if let index=CommandLine.arguments.firstIndex(of:"--render-app-icon"), CommandLine.arguments.count > index+1 { AppIcon.export(to:CommandLine.arguments[index+1]); return }
         if let index=CommandLine.arguments.firstIndex(of:"--render-mascot"), CommandLine.arguments.count > index+1 { renderMascot(CommandLine.arguments[index+1]); return }
         if CommandLine.arguments.contains("--probe") {
             Task {
