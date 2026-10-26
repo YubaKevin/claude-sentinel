@@ -31,7 +31,17 @@ open output/ClaudeSentinel.app
 .build/release/ClaudeSentinel --probe
 ```
 
-生成可交付的本机架构测试包与 SHA-256 校验文件：
+[下载 macOS Apple 芯片测试版 DMG](https://github.com/YubaKevin/claude-sentinel/releases/tag/v0.1.0)（临时签名，未公证）。打开安装盘后，将小猫拖入 Applications。
+
+生成带像素太空站背景的 DMG（构建者额外需要 Python 3；接收者不需要）：
+
+```sh
+python3 -m venv .build/dmg-tools
+.build/dmg-tools/bin/pip install -r scripts/requirements-dmg.txt
+./scripts/package-dmg.sh
+```
+
+生成可交付的本机架构测试 ZIP 与 SHA-256 校验文件：
 
 ```sh
 ./scripts/package.sh
